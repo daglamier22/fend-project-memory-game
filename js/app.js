@@ -24,6 +24,8 @@ let cardValues = [
   "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"
 ];
 
+let filledStar = '<li><i class="fa fa-star"></i></li>';
+let openStar = '<li><i class="fa fa-star-o"></i></li>';
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -50,10 +52,9 @@ function newGame() {
   moves.text(0);
   //reset score
   stars.empty();
-  let newStar = '<li><i class="fa fa-star"></i></li>';
-  stars.append(newStar);
-  stars.append(newStar);
-  stars.append(newStar);
+  stars.append(filledStar);
+  stars.append(filledStar);
+  stars.append(filledStar);
   //create setup listeners
   setupCardListeners();
   openCardList.length = 0;
@@ -132,6 +133,8 @@ function cardsMatch() {
     $(openCardList[1]).removeClass("open show").addClass("match");
     openCardList.shift();
     openCardList.shift();
+    //add move
+    incMoves();
   }, 1000);
 }
 
@@ -141,5 +144,35 @@ function cardsDontMatch() {
     $(openCardList[1]).removeClass("open show");
     openCardList.shift();
     openCardList.shift();
+    //add move
+    incMoves();
   }, 1000);
+}
+
+function incMoves() {
+  //grab current moves
+  let current = $(moves).text();
+  //convert to number
+  current -= 0;
+  //increment
+  current += 1;
+  //determine star breakpoints
+  if( current > 20 ) {
+    stars.empty();
+    stars.append(openStar);
+    stars.append(openStar);
+    stars.append(openStar);
+  } else if( current > 15 ) {
+    stars.empty();
+    stars.append(filledStar);
+    stars.append(openStar);
+    stars.append(openStar);
+  } else if( current > 10 ) {
+    stars.empty();
+    stars.append(filledStar);
+    stars.append(filledStar);
+    stars.append(openStar);
+  }
+  //display current moves
+  $(moves).text(current);
 }
