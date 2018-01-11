@@ -34,6 +34,8 @@ let cardValues = [
 function newGame() {
   //shuffle cards
   shuffle(cardValues);
+  //remove handlers
+  deck.off('click', 'li');
   //clear deck
   deck.empty();
   //deal new cards
@@ -54,6 +56,7 @@ function newGame() {
   stars.append(newStar);
   //create setup listeners
   setupCardListeners();
+  openCardList.length = 0;
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -91,14 +94,19 @@ function setupCardListeners() {
     //add to open card list
     addCardToList(this);
 
+    //handle matches
     if( openCardList.length == 2 ) {
-      console.log("test");
+      if( match() ) {
+        cardsMatch();
+      } else {
+        cardsDontMatch();
+      }
     }
   });
 }
 
 function flipCard(card) {
-  console.log(card);
+  $(card).addClass("open show");
 }
 
 function addCardToList(card) {
@@ -106,13 +114,27 @@ function addCardToList(card) {
 }
 
 function match() {
-
+  if( $(openCardList[0]).children().attr("class") == $(openCardList[1]).children().attr("class") ) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function cardsMatch() {
-
+  setTimeout(function(){
+    openCardList.forEach(function(card) {
+      $(card).removeClass("open show").addClass("match");
+    });
+    openCardList.length = 0;
+  }, 1000);
 }
 
 function cardsDontMatch() {
-
+  setTimeout(function(){
+    openCardList.forEach(function(card) {
+      $(card).removeClass("open show");
+    });
+    openCardList.length = 0;
+  }, 1000);
 }
