@@ -20,6 +20,9 @@ let clockMinutes = 0;
 let clockSeconds = 0;
 let clockTimer;
 
+// Select Win Screen
+let winScreen = $('#winModal');
+
 /*
  * Create a list that holds all of your cards
  */
@@ -158,6 +161,10 @@ function cardsMatch() {
     openCardList.shift();
     //add move
     incMoves();
+    //determine if everything matches
+    if( deck.children(".match").length == 16 ) {
+      gameOver();
+    }
   }, 1000);
 }
 
@@ -198,4 +205,18 @@ function incMoves() {
   }
   //display current moves
   $(moves).text(current);
+}
+
+// restart game after win
+$("#playagain").click(function(evt) {
+  winScreen.css("display", "none");
+  newGame();
+});
+
+function gameOver() {
+  clearInterval(clockTimer);
+  $(".winningMoves").text($(moves).text());
+  $(".winningStars").text(stars.children(".fa-star").length);
+  $(".winningTime").text($(clockDisplay).text());
+  winScreen.css("display", "inline");
 }
