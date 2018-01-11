@@ -39,7 +39,7 @@ function newGame() {
   //deal new cards
   cardValues.forEach(function(card) {
     let newCard = "";
-    newCard += '<li class="card open show"><i class="';
+    newCard += '<li class="card"><i class="';
     newCard += card;
     newCard += '"></i></li>';
     deck.append(newCard);
