@@ -1,13 +1,3 @@
-/*
- * Create a list that holds all of your cards
- */
-let cardValues = [
-  "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt",
-  "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle",
-  "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb",
-  "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"
-];
-
 // Select the deck
 let deck = $('.deck');
 
@@ -18,6 +8,22 @@ restart.on('click', function( evt ) {
   newGame();
 });
 
+// Select the moves indicator
+let moves = $('.moves');
+
+// Select the star score indicator
+let stars = $('.stars');
+
+/*
+ * Create a list that holds all of your cards
+ */
+let cardValues = [
+  "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt",
+  "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle",
+  "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb",
+  "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"
+];
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -26,8 +32,11 @@ restart.on('click', function( evt ) {
  */
 
 function newGame() {
+  //shuffle cards
   shuffle(cardValues);
+  //clear deck
   deck.empty();
+  //deal new cards
   cardValues.forEach(function(card) {
     let newCard = "";
     newCard += '<li class="card open show"><i class="';
@@ -35,6 +44,14 @@ function newGame() {
     newCard += '"></i></li>';
     deck.append(newCard);
   });
+  //reset moves counter
+  moves.text(0);
+  //reset score
+  stars.empty();
+  let newStar = '<li><i class="fa fa-star"></i></li>';
+  stars.append(newStar);
+  stars.append(newStar);
+  stars.append(newStar);
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
