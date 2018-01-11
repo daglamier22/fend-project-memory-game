@@ -187,17 +187,17 @@ function incMoves() {
   //increment
   current += 1;
   //determine star breakpoints
-  if( current > 20 ) {
+  if( current > 25 ) {
     stars.empty();
     stars.append(openStar);
     stars.append(openStar);
     stars.append(openStar);
-  } else if( current > 15 ) {
+  } else if( current > 18 ) {
     stars.empty();
     stars.append(filledStar);
     stars.append(openStar);
     stars.append(openStar);
-  } else if( current > 10 ) {
+  } else if( current > 12 ) {
     stars.empty();
     stars.append(filledStar);
     stars.append(filledStar);
