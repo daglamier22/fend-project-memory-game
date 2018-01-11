@@ -52,6 +52,8 @@ function newGame() {
   stars.append(newStar);
   stars.append(newStar);
   stars.append(newStar);
+  //create setup listeners
+  setupCardListeners();
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -80,3 +82,37 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+let openCardList = [];
+
+function setupCardListeners() {
+  deck.on('click', 'li', function(evt) {
+    //display card
+    flipCard(this);
+    //add to open card list
+    addCardToList(this);
+
+    if( openCardList.length == 2 ) {
+      console.log("test");
+    }
+  });
+}
+
+function flipCard(card) {
+  console.log(card);
+}
+
+function addCardToList(card) {
+  openCardList.push(card);
+}
+
+function match() {
+
+}
+
+function cardsMatch() {
+
+}
+
+function cardsDontMatch() {
+
+}
