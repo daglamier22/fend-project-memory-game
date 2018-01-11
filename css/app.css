@@ -107,3 +107,7 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.score-panel .clock {
+    padding-left: 75px;
+}

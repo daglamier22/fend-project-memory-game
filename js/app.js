@@ -14,6 +14,12 @@ let moves = $('.moves');
 // Select the star score indicator
 let stars = $('.stars');
 
+// Select the timer indicator
+let clockDisplay = $('.clock');
+let clockMinutes = 0;
+let clockSeconds = 0;
+let clockTimer;
+
 /*
  * Create a list that holds all of your cards
  */
@@ -58,6 +64,24 @@ function newGame() {
   //create setup listeners
   setupCardListeners();
   openCardList.length = 0;
+  //clear clock
+  clockMinutes = 0;
+  clockSeconds = 0;
+  clearInterval(clockTimer);
+  clockDisplay.text("0:00");
+  //start clock
+  clockTimer = setInterval(function() {
+    //increment clock
+    clockSeconds += 1;
+    if( clockSeconds == 60 ) {
+      clockSeconds = 0;
+      clockMinutes += 1;
+    }
+
+    //display new value
+    let value = clockMinutes + ":" + ((clockSeconds>=10)?"":"0") + clockSeconds;
+    clockDisplay.text(value);
+  },1000);
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -94,7 +118,6 @@ function setupCardListeners() {
     if( $(this).attr("class") == "card match" ) {
       return;
     }
-    console.log("click");
     //display card
     flipCard(this);
     //add to open card list
