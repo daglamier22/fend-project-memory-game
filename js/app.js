@@ -89,6 +89,11 @@ let openCardList = [];
 
 function setupCardListeners() {
   deck.on('click', 'li', function(evt) {
+    //ignore clicks on already matched cards
+    if( $(this).attr("class") == "card match" ) {
+      return;
+    }
+    console.log("click");
     //display card
     flipCard(this);
     //add to open card list
@@ -123,18 +128,18 @@ function match() {
 
 function cardsMatch() {
   setTimeout(function(){
-    openCardList.forEach(function(card) {
-      $(card).removeClass("open show").addClass("match");
-    });
-    openCardList.length = 0;
+    $(openCardList[0]).removeClass("open show").addClass("match");
+    $(openCardList[1]).removeClass("open show").addClass("match");
+    openCardList.shift();
+    openCardList.shift();
   }, 1000);
 }
 
 function cardsDontMatch() {
   setTimeout(function(){
-    openCardList.forEach(function(card) {
-      $(card).removeClass("open show");
-    });
-    openCardList.length = 0;
+    $(openCardList[0]).removeClass("open show");
+    $(openCardList[1]).removeClass("open show");
+    openCardList.shift();
+    openCardList.shift();
   }, 1000);
 }
