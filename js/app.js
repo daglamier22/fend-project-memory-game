@@ -33,7 +33,7 @@ let cardValues = [
   "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"
 ];
 
-let filledStar = '<li><i class="fa fa-star"></i></li>';
+let filledStar = '<li class="star"><i class="fa fa-star"></i></li>';
 let openStar = '<li><i class="fa fa-star-o"></i></li>';
 /*
  * Display the cards on the page
@@ -216,7 +216,7 @@ $("#playagain").click(function(evt) {
 function gameOver() {
   clearInterval(clockTimer);
   $(".winningMoves").text($(moves).text());
-  $(".winningStars").text(stars.children(".fa-star").length);
+  $(".winningStars").text(stars.children(".star").length);
   $(".winningTime").text($(clockDisplay).text());
   winScreen.css("display", "inline");
 }

@@ -125,3 +125,34 @@ h1 {
   height: 100%;
   background-color: rgb(255,255,255);
 }
+
+.modal-window {
+  position: absolute;
+  top: 50%;
+  margin-top: -200px;
+  left: 0;
+  width: 100%;
+}
+
+.modal-content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+  text-align: center;
+}
+
+.green{
+  color: #00ff00;
+  font-size: 40pt;
+}
+
+.btn {
+  background-color: #338e76;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 100px;
+  color: #ffffff;
+  cursor: pointer;
+}
