@@ -1,7 +1,22 @@
 /*
  * Create a list that holds all of your cards
  */
+let cardValues = [
+  "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt",
+  "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle",
+  "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb",
+  "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"
+];
 
+// Select the deck
+let deck = $('.deck');
+
+// Select the restart button
+let restart = $('.restart');
+restart.on('click', function( evt ) {
+  evt.preventDefault();
+  newGame();
+});
 
 /*
  * Display the cards on the page
@@ -9,6 +24,18 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+function newGame() {
+  shuffle(cardValues);
+  deck.empty();
+  cardValues.forEach(function(card) {
+    let newCard = "";
+    newCard += '<li class="card open show"><i class="';
+    newCard += card;
+    newCard += '"></i></li>';
+    deck.append(newCard);
+  });
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
