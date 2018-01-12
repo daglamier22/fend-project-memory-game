@@ -122,8 +122,8 @@ function setupCardListeners() {
       },1000);
       clockTimerRunning = true;
     }
-    //ignore clicks on already matched cards
-    if( $(this).attr("class") == "card match" ) {
+    //ignore clicks on already matched cards and open cards
+    if( $(this).attr("class") == "card match" || $(this).attr("class") == "card open show") {
       return;
     }
     //display card
