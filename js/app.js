@@ -19,6 +19,7 @@ let clockDisplay = $('.clock');
 let clockMinutes = 0;
 let clockSeconds = 0;
 let clockTimer;
+let clockTimerRunning = false;
 
 // Select Win Screen
 let winScreen = $('#winModal');
@@ -72,19 +73,7 @@ function newGame() {
   clockSeconds = 0;
   clearInterval(clockTimer);
   clockDisplay.text("0:00");
-  //start clock
-  clockTimer = setInterval(function() {
-    //increment clock
-    clockSeconds += 1;
-    if( clockSeconds == 60 ) {
-      clockSeconds = 0;
-      clockMinutes += 1;
-    }
-
-    //display new value
-    let value = clockMinutes + ":" + ((clockSeconds>=10)?"":"0") + clockSeconds;
-    clockDisplay.text(value);
-  },1000);
+  clockTimerRunning = false;
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -117,6 +106,22 @@ let openCardList = [];
 
 function setupCardListeners() {
   deck.on('click', 'li', function(evt) {
+    if( !clockTimerRunning ) {
+      //start clock
+      clockTimer = setInterval(function() {
+        //increment clock
+        clockSeconds += 1;
+        if( clockSeconds == 60 ) {
+          clockSeconds = 0;
+          clockMinutes += 1;
+        }
+
+        //display new value
+        let value = clockMinutes + ":" + ((clockSeconds>=10)?"":"0") + clockSeconds;
+        clockDisplay.text(value);
+      },1000);
+      clockTimerRunning = true;
+    }
     //ignore clicks on already matched cards
     if( $(this).attr("class") == "card match" ) {
       return;
@@ -210,6 +215,7 @@ $("#playagain").click(function(evt) {
 
 function gameOver() {
   clearInterval(clockTimer);
+  clockTimerRunning = false;
   $(".winningMoves").text($(moves).text());
   $(".winningStars").text(stars.children(".star").length);
   $(".winningTime").text($(clockDisplay).text());
