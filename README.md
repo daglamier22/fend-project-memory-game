@@ -1,5 +1,7 @@
 # Memory Game Project
 
+How good is your memory? Test it out today with this fun little memory game.
+
 ## Table of Contents
 
 * [Instructions](#instructions)
@@ -7,14 +9,16 @@
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Simply open the `index.html` file in your browser to begin playing.
 
-To get started, open `js/app.js` and start building out the app's functionality
+A timer will begin after you flip your first card, your moves will be counted, and you will be given a star score in real time as you make moves.
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+Click the arrow next to the timer to reshuffle the cards and start a new game.
+
+See if you can beat your _own_ best score!
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+This repository is my version of a project for _all_ Udacity students taking the Front End Web Developer Nanodegree. Therefore, I most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
